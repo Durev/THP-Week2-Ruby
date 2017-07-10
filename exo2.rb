@@ -13,22 +13,25 @@ def chiffre_de_cesar(chaine, n)
 		if ((c >= 97) && (c <= 122) && (c + n > 122)) || ((c >= 65) && (c <= 90) && (c + n > 90))
 			code << (c + n - 26).chr
 
-		#sinon, on convertit juste le résultat à nouveau en caractère :
-		else 
+		#Si c'est une lettre minuscule ou majuscule, on convertit juste le résultat à nouveau en caractère :
+		elsif ((c >= 97) && (c <= 122)) || ((c >= 65) && (c <= 90))
 			code << (c + n).chr
+		
+		#Si ce n'est pas une lettre (espace, ponctuation, etc.), on laisse le caractère intact :
+		else 
+			code << c.chr
 		end
 
 	end
 
 	#On affiche le résultat
-	puts "Avé césar ! \nVotre message codé est : #{code}"
+	puts "\nAvé césar ! \nVotre message codé est : #{code} \nBye. La bise à Cléopâtre."
 end
 
-#Tests :
+#Instructions pour saisie par l'utilisateur
+puts "Bonjour, noble César. Saisissez la chaîne de caractères à coder."
+saisie = gets.chomp
+puts "Saisissez la clé à utiliser."
+clef = gets.chomp.to_i
 
-chiffre_de_cesar("xyz", 3)
-chiffre_de_cesar("XYZ", 3)
-chiffre_de_cesar("ABC", 3)
-chiffre_de_cesar("abc", 3)
-chiffre_de_cesar("ABC", 123)
-chiffre_de_cesar("abc", 546)
+chiffre_de_cesar(saisie, clef)
